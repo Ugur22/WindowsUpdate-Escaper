@@ -1,0 +1,44 @@
+body {
+    background-color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow:hidden;
+    margin:0px; padding:0px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+body * {
+    position: absolute;
+    display: block;
+    margin:0px; padding:0px;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+}
+
+container {
+    background-color: #ffffff;
+    width:800px; height:600px;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    overflow:hidden;
+}
+
+
+penguin {
+    background-image: url("https://cdn4.iconfinder.com/data/icons/christmas-cheer-volume-i-1/64/penguin-128.png");
+    height: 130px;
+    width: 130px;
+}
+
+sudo {
+    background-image: url("../images/sudo.png");
+    height: 50px;
+    width: 50px;
+}
+
+
+update {
+    background-image: url("../images/Update.png");
+    height: 50px;
+    width: 50px;
+}
+
