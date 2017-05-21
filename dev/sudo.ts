@@ -11,12 +11,12 @@ class Sudo extends GameObject {
         this.speed = 0;
         this.x = 90;
         this.y = 50;
-        this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
+        this.behavior = new Moving(this.speed, this);
+
 
     }
 
     public draw(): void {
-        this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
-
+        this.behavior.draw(this);
     }
 }

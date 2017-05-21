@@ -23,7 +23,7 @@ class Moving implements Behavior {
     move(object: any): void {
         object.y = object.y + 1;
         if (object.y > 600) {
-            object.y = 50;
+            object.y = 0;
         }
     }
 

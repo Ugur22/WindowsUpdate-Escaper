@@ -62,7 +62,7 @@ var Penguin = (function (_super) {
         parent.appendChild(_this.div);
         _this.speed = 0;
         _this.x = container.offsetWidth / 2 - 130;
-        _this.y = 470;
+        _this.y = 520;
         _this.behavior = new Moving(_this.speed, _this);
         window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
         return _this;
@@ -84,11 +84,11 @@ var Sudo = (function (_super) {
         _this.speed = 0;
         _this.x = 90;
         _this.y = 50;
-        _this.div.style.transform = "translate(" + _this.x + "px, " + _this.y + "px)";
+        _this.behavior = new Moving(_this.speed, _this);
         return _this;
     }
     Sudo.prototype.draw = function () {
-        this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
+        this.behavior.draw(this);
     };
     return Sudo;
 }(GameObject));
@@ -155,7 +155,7 @@ var Moving = (function () {
     Moving.prototype.move = function (object) {
         object.y = object.y + 1;
         if (object.y > 600) {
-            object.y = 50;
+            object.y = 0;
         }
     };
     Moving.prototype.draw = function (object) {
