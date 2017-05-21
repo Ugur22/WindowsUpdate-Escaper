@@ -1,3 +1,3 @@
 # PRG08-week4-Deel-Game
-![alt tag](https://cdn4.iconfinder.com/data/icons/christmas-cheer-volume-i-1/64/penguin-128.pngg)
+![alt tag](https://cdn4.iconfinder.com/data/icons/christmas-cheer-volume-i-1/64/penguin-128.png)
 Defeat the evil windows updates!
