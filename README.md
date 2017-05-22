@@ -34,7 +34,7 @@ Move the cloned folder to your xammp/htdocs folder. Turn on the apache server en
 ### For linux
 Move the cloned folder to your var/www/html folder. Type localhost/Windows-updateEscaper/dist/. The game should be running in the browser now. Enjoy!.
 
-### visit the game at: [a link](http://178.62.251.155/dist/)
+### visit the game at: [WindowsUpdate-Escaper](http://178.62.251.155/dist/)
 
 ## Programmeer principes
 This project has been written in OOP Typescript using the following principles

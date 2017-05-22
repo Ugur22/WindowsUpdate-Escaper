@@ -34,10 +34,10 @@ class Game {
         this.penguin.draw();
 
         for (let b of this.bullets) {
-
+            b.move();
+            b.draw();
             for (let u of this.updates) {
-                b.move();
-                b.draw();
+
                 if (Utils.checkCollision(b, u)) {
                     b.removeMe();
                     Utils.removeObject(b, this.bullets);

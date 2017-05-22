@@ -199,10 +199,10 @@ var Game = (function () {
         this.penguin.draw();
         for (var _i = 0, _a = this.bullets; _i < _a.length; _i++) {
             var b = _a[_i];
+            b.move();
+            b.draw();
             for (var _b = 0, _c = this.updates; _b < _c.length; _b++) {
                 var u = _c[_b];
-                b.move();
-                b.draw();
                 if (Utils.checkCollision(b, u)) {
                     b.removeMe();
                     Utils.removeObject(b, this.bullets);
