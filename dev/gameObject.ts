@@ -1,10 +1,35 @@
 abstract class GameObject {
     protected _div: HTMLElement;
     protected _speed: number;
+    protected _height: number;
+    protected _width: number;
     protected _x: number;
     protected _y: number;
+    protected container = document.getElementById("container");
 
-    constructor() { }
+    constructor() {
+
+    }
+
+    public removeMe(): void {
+        this.div.remove();
+    }
+
+    public get height(): number {
+        return this._height
+    }
+
+    public set height(v: number) {
+        this._height = v;
+    }
+
+    public get width(): number {
+        return this._width
+    }
+
+    public set width(v: number) {
+        this._width = v;
+    }
 
 
     public get div(): HTMLElement {

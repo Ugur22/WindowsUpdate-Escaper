@@ -7,7 +7,7 @@ class WindowsUpdate extends GameObject {
         super();
         this.div = document.createElement("update");
         parent.appendChild(this.div);
-        this.speed = 1;
+        this.speed = 3;
         this.x = x;
         this.y = y;
         this.behavior = new Moving(this.speed, this);
@@ -19,7 +19,7 @@ class WindowsUpdate extends GameObject {
     }
 
     public move(): void {
-        this.behavior.move(this);
+        this.behavior.move(this, this.speed);
     }
 
 }

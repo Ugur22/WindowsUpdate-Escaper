@@ -1,35 +1,56 @@
 /// <reference path="penguin.ts" />
 /// <reference path="sudo.ts" />
 /// <reference path="windowsUpdate.ts" />
+/// <reference path="utils.ts" />
+
 
 
 
 class Game {
 
     private penguin: Penguin;
-    private sudo: Sudo;
+    private static instance: Game;
     private updates: Array<WindowsUpdate> = new Array<WindowsUpdate>();
+    private bullets: Array<Sudo> = new Array<Sudo>();
+    private container = document.getElementById("container");
 
 
     constructor() {
-        let container = document.getElementById("container");
-        this.penguin = new Penguin(container);
-        this.sudo = new Sudo(container);
+
+        this.penguin = new Penguin(this.container);
         for (let i = 1; i <= 5; i++) {
-            this.updates.push(new WindowsUpdate(container, i * 100, 0));
+            this.updates.push(new WindowsUpdate(this.container, i * 100, 80 * i));
         }
-
-
 
         requestAnimationFrame(() => this.gameLoop());
     }
-    
+
+    public createBullet(b: Sudo) {
+        this.bullets.push(b);
+    }
+
 
     private gameLoop() {
         this.penguin.draw();
-        this.sudo.draw();
 
+        for (let b of this.bullets) {
+            b.move();
+            b.draw();
+            if (b.y < 0) {
+                b.removeMe();
+            }
+
+        }
         for (let u of this.updates) {
+            if (u.y > 600) {
+                u.removeMe();
+                this.removeUpdate(u);
+            }
+
+            if (Utils.checkCollision(u, this.penguin)) {
+                console.log("hit");
+                this.penguin.removeMe();
+            }
             u.draw();
             u.move();
         }
@@ -37,10 +58,30 @@ class Game {
 
         requestAnimationFrame(() => this.gameLoop());
     }
+
+    public removeUpdate(u: WindowsUpdate): void {
+        this.removeFromArray(u, this.updates);
+        // console.log("aantal updates is nu " + this.updates.length);
+    }
+
+    public removeFromArray(object: any, arrayObject: any) {
+        for (let i = 0; i < arrayObject.length; i++) {
+            if (arrayObject[i] === object) {
+                arrayObject.splice(i, 1);
+            }
+        }
+    }
+
+    public static getInstance() {
+        if (!Game.instance) {
+            Game.instance = new Game();
+        }
+        return Game.instance;
+    }
 }
 
 
 // load
 window.addEventListener("load", function () {
-    let g: Game = new Game();
+    let g: Game = Game.getInstance();
 });

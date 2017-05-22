@@ -2,24 +2,38 @@
 /// <reference path="gameObject.ts" />
 
 class Penguin extends GameObject {
-    public direction: string;
-    private sudo: Sudo;
     public behavior: Behavior
 
     constructor(parent: HTMLElement) {
         super();
         this.div = document.createElement("penguin");
-        let container = document.getElementById("container");
         parent.appendChild(this.div);
-        this.speed = 0;
-        this.x = container.offsetWidth / 2 - 130;
+        this.speed = 30;
+        this.x = this.container.offsetWidth / 2 - 130;
         this.y = 520;
         this.behavior = new Moving(this.speed, this);
         window.addEventListener("keydown", (e: KeyboardEvent) => this.onKeyDown(e));
+        window.addEventListener("keyup", (e: KeyboardEvent) => this.onKeyUp(e));
     }
 
     private onKeyDown(e: KeyboardEvent): void {
-        this.behavior.onKeydown(e,this);
+        if (e.keyCode == 65) {
+            this.x = this.x - this.speed;
+        }
+        else if (e.keyCode == 68) {
+            this.x = this.x + this.speed;
+        }
+        else if (e.keyCode == 32) {
+            let b = new Sudo(this.container, this.x, this.y)
+            Game.getInstance().createBullet(b);
+
+        }
+    }
+
+
+    private onKeyUp(e: KeyboardEvent): void {
+        if (this.onKeyUp) {
+        }
 
     }
 
