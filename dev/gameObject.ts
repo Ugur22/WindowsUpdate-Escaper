@@ -5,6 +5,7 @@ abstract class GameObject {
     protected _width: number;
     protected _x: number;
     protected _y: number;
+    public behavior: Behavior
     protected container = document.getElementById("container");
 
     constructor() {

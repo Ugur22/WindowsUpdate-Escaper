@@ -42,13 +42,11 @@ class Game {
 
         }
         for (let u of this.updates) {
-            
 
-            // console.log(Utils.checkCollision(u, this.penguin));
 
             if (Utils.checkCollision(u, this.penguin)) {
                 console.log("hit");
-               this.penguin.removeMe();
+                this.penguin.removeMe();
             }
             u.draw();
             u.move();
@@ -57,7 +55,7 @@ class Game {
 
             if (u.y > 600) {
                 u.removeMe();
-                this.removeUpdate(u);
+                Utils.removeObject(u, this.updates);
             }
         }
 
@@ -65,18 +63,9 @@ class Game {
         requestAnimationFrame(() => this.gameLoop());
     }
 
-    public removeUpdate(u: WindowsUpdate): void {
-        this.removeFromArray(u, this.updates);
-        // console.log("aantal updates is nu " + this.updates.length);
-    }
 
-    public removeFromArray(object: any, arrayObject: any) {
-        for (let i = 0; i < arrayObject.length; i++) {
-            if (arrayObject[i] === object) {
-                arrayObject.splice(i, 1);
-            }
-        }
-    }
+
+
 
     public static getInstance() {
         if (!Game.instance) {

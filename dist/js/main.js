@@ -167,6 +167,16 @@ var Utils = (function () {
             object1.y < object2.y + object2.height &&
             object1.height + object1.y > object2.y);
     };
+    Utils.removeFromArray = function (object, arrayObject) {
+        for (var i = 0; i < arrayObject.length; i++) {
+            if (arrayObject[i] === object) {
+                arrayObject.splice(i, 1);
+            }
+        }
+    };
+    Utils.removeObject = function (o, arrayObject) {
+        Utils.removeFromArray(o, arrayObject);
+    };
     return Utils;
 }());
 var Game = (function () {
@@ -205,20 +215,10 @@ var Game = (function () {
             u.move();
             if (u.y > 600) {
                 u.removeMe();
-                this.removeUpdate(u);
+                Utils.removeObject(u, this.updates);
             }
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
-    };
-    Game.prototype.removeUpdate = function (u) {
-        this.removeFromArray(u, this.updates);
-    };
-    Game.prototype.removeFromArray = function (object, arrayObject) {
-        for (var i = 0; i < arrayObject.length; i++) {
-            if (arrayObject[i] === object) {
-                arrayObject.splice(i, 1);
-            }
-        }
     };
     Game.getInstance = function () {
         if (!Game.instance) {
