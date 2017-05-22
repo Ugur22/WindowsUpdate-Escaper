@@ -6,7 +6,7 @@ Windows-updateEscaper is an awesome game to show how much Windows sucks. As the 
 
 
 ## UML Classdiagram 
-![alt tag](http://i.imgur.com/cKUUGQP.jpg)<br />
+![alt tag](http://i.imgur.com/nzbXXV2.jpg)<br />
 
 ## the following tools are needed to correctly run this project. If you already have them set up you can skip this part and start with cloning and installing the game
 
