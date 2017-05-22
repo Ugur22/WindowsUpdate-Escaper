@@ -6,9 +6,9 @@ Windows-updateEscaper is an awesome game to show how much Windows sucks. As the 
 
 
 ## UML Classdiagram 
-![alt tag](http://i.imgur.com/nzbXXV2.jpg)<br />
+![alt tag](http://i.imgur.com/qccGVFv.jpg)<br />
 
-## the following tools are needed to correctly run this project. If you already have them set up you can skip this part and start with cloning and installing the game
+#### the following tools are needed to correctly run this project. If you already have them set up you can skip this part and start with cloning and installing the game
 
 ## installation Node.js for Windows
 Visit https://nodejs.org/en/download/ and download Windows Installer (.msi). After downloading you follow the wizard to install.
@@ -36,12 +36,22 @@ Move the cloned folder to your var/www/html folder. Type localhost/Windows-updat
 
 ### visit the game at: [WindowsUpdate-Escaper](http://178.62.251.155/dist/)
 
-## Programmeer principes
+## Programmaming principles
 This project has been written in OOP Typescript using the following principles
-#### interface
-#### static utility method
+#### interface - I have used Behavior.ts as my interface. this interface consists out of the following methods:
+draw(object): void;
+move(object, speed): void;
+onKeydown(e: KeyboardEvent): void;
+onKeyUp(e: KeyboardEvent): void
+#### static utility method:
+I have created a Util.ts class where all my static methods are declared. I primarily use these methods in Game.ts to check if objects collide.
 #### singleton
+In Game.ts I made in instance of method. With this I can easily access methdos of Game.ts outside of the class itself. I used it to access the createbullet method so whenever a player presses the spacebar it will create a bullet
 #### strategy
+I created a Moving.ts class which in turn implements behavior.ts and gets all the methdos from that interface. I use this methods in various gameobjects to easily add behavior without the needs of many ifs.
 #### Inheritance
+I created GameObjects.ts which has all the attrbutes that a gameobject needs. the penguin , sudo and windowsUpdate class enherit from this class so they can access all these properties
 #### Composition
+The Game.ts has a relationship with all the different kind of gameobjects like penguin, sudo and windowsUpdate class. That's where the composition takes place.
 #### Encapsulation
+In the Gameobjects class I added a getter and setter f all properties so they are not easily accessible from the outside. All properties are private.
