@@ -86,6 +86,8 @@ var Penguin = (function (_super) {
         _this.speed = 30;
         _this.x = _this.container.offsetWidth / 2 - 130;
         _this.y = 520;
+        _this.height = 70;
+        _this.width = 70;
         _this.behavior = new Moving(_this.speed, _this);
         window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
         window.addEventListener("keyup", function (e) { return _this.onKeyUp(e); });
@@ -121,6 +123,8 @@ var Sudo = (function (_super) {
         _this.speed = -10;
         _this.x = x;
         _this.y = y;
+        _this.height = 30;
+        _this.width = 30;
         _this.behavior = new Moving(_this.speed, _this);
         return _this;
     }
@@ -141,6 +145,8 @@ var WindowsUpdate = (function (_super) {
         _this.speed = 3;
         _this.x = x;
         _this.y = y;
+        _this.height = 30;
+        _this.width = 30;
         _this.behavior = new Moving(_this.speed, _this);
         return _this;
     }
@@ -191,16 +197,16 @@ var Game = (function () {
         }
         for (var _b = 0, _c = this.updates; _b < _c.length; _b++) {
             var u = _c[_b];
-            if (u.y > 600) {
-                u.removeMe();
-                this.removeUpdate(u);
-            }
             if (Utils.checkCollision(u, this.penguin)) {
                 console.log("hit");
                 this.penguin.removeMe();
             }
             u.draw();
             u.move();
+            if (u.y > 600) {
+                u.removeMe();
+                this.removeUpdate(u);
+            }
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };

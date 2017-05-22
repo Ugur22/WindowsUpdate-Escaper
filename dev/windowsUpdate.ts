@@ -10,6 +10,8 @@ class WindowsUpdate extends GameObject {
         this.speed = 3;
         this.x = x;
         this.y = y;
+        this.height = 30;
+        this.width = 30;
         this.behavior = new Moving(this.speed, this);
     }
 

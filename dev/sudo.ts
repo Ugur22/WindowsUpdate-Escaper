@@ -11,6 +11,8 @@ class Sudo extends GameObject {
         this.speed = -10;
         this.x = x;
         this.y = y;
+        this.height = 30;
+        this.width = 30;
         this.behavior = new Moving(this.speed, this);
     }
 

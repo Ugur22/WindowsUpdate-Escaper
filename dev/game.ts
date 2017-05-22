@@ -42,17 +42,23 @@ class Game {
 
         }
         for (let u of this.updates) {
+            
+
+            // console.log(Utils.checkCollision(u, this.penguin));
+
+            if (Utils.checkCollision(u, this.penguin)) {
+                console.log("hit");
+               this.penguin.removeMe();
+            }
+            u.draw();
+            u.move();
+
+
+
             if (u.y > 600) {
                 u.removeMe();
                 this.removeUpdate(u);
             }
-
-            if (Utils.checkCollision(u, this.penguin)) {
-                console.log("hit");
-                this.penguin.removeMe();
-            }
-            u.draw();
-            u.move();
         }
 
 
