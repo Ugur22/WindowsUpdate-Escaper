@@ -38,6 +38,7 @@ class Game {
             b.draw();
             if (b.y < 0) {
                 b.removeMe();
+                  Utils.removeObject(b, this.bullets);
             }
 
         }

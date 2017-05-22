@@ -18,6 +18,6 @@ class Utils {
     }
 
     public static removeObject(o: object, arrayObject: any): void {
-        Utils.removeFromArray(o, arrayObject);
+        this.removeFromArray(o, arrayObject);
     }
 }

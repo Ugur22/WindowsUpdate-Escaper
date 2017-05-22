@@ -175,7 +175,7 @@ var Utils = (function () {
         }
     };
     Utils.removeObject = function (o, arrayObject) {
-        Utils.removeFromArray(o, arrayObject);
+        this.removeFromArray(o, arrayObject);
     };
     return Utils;
 }());
@@ -203,6 +203,7 @@ var Game = (function () {
             b.draw();
             if (b.y < 0) {
                 b.removeMe();
+                Utils.removeObject(b, this.bullets);
             }
         }
         for (var _b = 0, _c = this.updates; _b < _c.length; _b++) {

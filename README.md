@@ -5,6 +5,9 @@
 Windows-updateEscaper is an awesome game to show how much Windows sucks. As the linux pinguin it's your task to destroy as many windows updates as possible to install Linux and avoid Windows being installed.
 
 
+## UML Classdiagram 
+![alt tag](http://i.imgur.com/cKUUGQP.jpg)<br />
+
 ## the following tools are needed to correctly run this project. If you already have them set up you can skip this part and start with cloning and installing the game
 
 ## installation Node.js for Windows
