@@ -6,8 +6,6 @@ class Moving implements Behavior {
 
 
     public penguin: Penguin;
-    public sudo: Sudo;
-    private container = document.getElementById("container");
 
 
     constructor(s: number, object) {

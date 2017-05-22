@@ -227,7 +227,6 @@ window.addEventListener("load", function () {
 });
 var Moving = (function () {
     function Moving(s, object) {
-        this.container = document.getElementById("container");
         this.speed = s;
     }
     Moving.prototype.onKeydown = function (e) {
