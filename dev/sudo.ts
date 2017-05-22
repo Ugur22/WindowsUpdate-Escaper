@@ -8,7 +8,7 @@ class Sudo extends GameObject {
         super();
         this.div = document.createElement("sudo");
         parent.appendChild(this.div);
-        this.speed = -10;
+        this.speed = -2;
         this.x = x;
         this.y = y;
         this.height = 30;

@@ -120,7 +120,7 @@ var Sudo = (function (_super) {
         var _this = _super.call(this) || this;
         _this.div = document.createElement("sudo");
         parent.appendChild(_this.div);
-        _this.speed = -10;
+        _this.speed = -2;
         _this.x = x;
         _this.y = y;
         _this.height = 30;
