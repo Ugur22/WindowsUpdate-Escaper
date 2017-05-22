@@ -7,7 +7,7 @@ class WindowsUpdate extends GameObject {
         super();
         this.div = document.createElement("update");
         parent.appendChild(this.div);
-        this.speed = 3;
+        this.speed = 1;
         this.x = x;
         this.y = y;
         this.height = 30;

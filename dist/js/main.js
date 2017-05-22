@@ -142,7 +142,7 @@ var WindowsUpdate = (function (_super) {
         var _this = _super.call(this) || this;
         _this.div = document.createElement("update");
         parent.appendChild(_this.div);
-        _this.speed = 3;
+        _this.speed = 1;
         _this.x = x;
         _this.y = y;
         _this.height = 30;
@@ -187,7 +187,7 @@ var Game = (function () {
         this.container = document.getElementById("container");
         this.penguin = new Penguin(this.container);
         for (var i = 1; i <= 5; i++) {
-            this.updates.push(new WindowsUpdate(this.container, i * 100, 80 * i));
+            this.updates.push(new WindowsUpdate(this.container, i * 100, 0));
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
@@ -199,15 +199,24 @@ var Game = (function () {
         this.penguin.draw();
         for (var _i = 0, _a = this.bullets; _i < _a.length; _i++) {
             var b = _a[_i];
-            b.move();
-            b.draw();
-            if (b.y < 0) {
-                b.removeMe();
-                Utils.removeObject(b, this.bullets);
+            for (var _b = 0, _c = this.updates; _b < _c.length; _b++) {
+                var u = _c[_b];
+                b.move();
+                b.draw();
+                if (Utils.checkCollision(b, u)) {
+                    b.removeMe();
+                    Utils.removeObject(b, this.bullets);
+                    u.removeMe();
+                    Utils.removeObject(u, this.updates);
+                }
+                if (b.y < 0) {
+                    b.removeMe();
+                    Utils.removeObject(b, this.bullets);
+                }
             }
         }
-        for (var _b = 0, _c = this.updates; _b < _c.length; _b++) {
-            var u = _c[_b];
+        for (var _d = 0, _e = this.updates; _d < _e.length; _d++) {
+            var u = _e[_d];
             if (Utils.checkCollision(u, this.penguin)) {
                 console.log("hit");
                 this.penguin.removeMe();

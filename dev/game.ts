@@ -19,7 +19,7 @@ class Game {
 
         this.penguin = new Penguin(this.container);
         for (let i = 1; i <= 5; i++) {
-            this.updates.push(new WindowsUpdate(this.container, i * 100, 80 * i));
+            this.updates.push(new WindowsUpdate(this.container, i * 100, 0));
         }
 
         requestAnimationFrame(() => this.gameLoop());
@@ -34,13 +34,22 @@ class Game {
         this.penguin.draw();
 
         for (let b of this.bullets) {
-            b.move();
-            b.draw();
-            if (b.y < 0) {
-                b.removeMe();
-                  Utils.removeObject(b, this.bullets);
-            }
 
+            for (let u of this.updates) {
+                b.move();
+                b.draw();
+                if (Utils.checkCollision(b, u)) {
+                    b.removeMe();
+                    Utils.removeObject(b, this.bullets);
+
+                    u.removeMe();
+                    Utils.removeObject(u, this.updates);
+                }
+                if (b.y < 0) {
+                    b.removeMe();
+                    Utils.removeObject(b, this.bullets);
+                }
+            }
         }
         for (let u of this.updates) {
 
