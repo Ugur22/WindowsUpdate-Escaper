@@ -9,18 +9,32 @@
 class Game {
 
     private penguin: Penguin;
+    private update: WindowsUpdate;
     private static instance: Game;
     private updates: Array<WindowsUpdate> = new Array<WindowsUpdate>();
+    // private gameObjects: Array<GameObject> = new Array<GameObject>();
+    // gameobjects.push(new Penguin());
+    // for(let g of this.gameObjects){
+    //     g.move();
+    // }
+
     private bullets: Array<Sudo> = new Array<Sudo>();
     private container = document.getElementById("container");
+    private RandomX: number;
 
 
     constructor() {
 
         this.penguin = new Penguin(this.container);
-        for (let i = 1; i <= 5; i++) {
-            this.updates.push(new WindowsUpdate(this.container, i * 100, 0));
-        }
+
+        setInterval(() => {
+            this.RandomX = Math.floor(Math.random() * 700) + 1;
+            this.updates.push(new WindowsUpdate(this.container, this.RandomX, 0));
+        }, 500);
+
+        // for (let i = 1; i <= 5; i++) {
+        //     this.updates.push(new WindowsUpdate(this.container, i * 100, 0));
+        // }
 
         requestAnimationFrame(() => this.gameLoop());
     }

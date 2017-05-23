@@ -120,7 +120,7 @@ var Sudo = (function (_super) {
         var _this = _super.call(this) || this;
         _this.div = document.createElement("sudo");
         parent.appendChild(_this.div);
-        _this.speed = -2;
+        _this.speed = -5;
         _this.x = x;
         _this.y = y;
         _this.height = 30;
@@ -186,9 +186,10 @@ var Game = (function () {
         this.bullets = new Array();
         this.container = document.getElementById("container");
         this.penguin = new Penguin(this.container);
-        for (var i = 1; i <= 5; i++) {
-            this.updates.push(new WindowsUpdate(this.container, i * 100, 0));
-        }
+        setInterval(function () {
+            _this.RandomX = Math.floor(Math.random() * 700) + 1;
+            _this.updates.push(new WindowsUpdate(_this.container, _this.RandomX, 0));
+        }, 500);
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
     Game.prototype.createBullet = function (b) {

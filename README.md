@@ -50,7 +50,7 @@ In Game.ts I made in instance of method. With this I can easily access methdos o
 #### strategy
 I created a Moving.ts class which in turn implements behavior.ts and gets all the methdos from that interface. I use this methods in various gameobjects to easily add behavior without the needs of many ifs.
 #### Inheritance
-I created GameObjects.ts which has all the attrbutes that a gameobject needs. the penguin , sudo and windowsUpdate class enherit from this class so they can access all these properties
+I created GameObjects.ts which has all the attributes that a gameobject needs. the penguin , sudo and windowsUpdate class enherit from this class so they can access all these properties
 #### Composition
 The Game.ts has a relationship with all the different kind of gameobjects like penguin, sudo and windowsUpdate class. That's where the composition takes place.
 #### Encapsulation
