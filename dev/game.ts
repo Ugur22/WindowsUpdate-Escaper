@@ -32,10 +32,6 @@ class Game {
             this.updates.push(new WindowsUpdate(this.container, this.RandomX, 0));
         }, 500);
 
-        // for (let i = 1; i <= 5; i++) {
-        //     this.updates.push(new WindowsUpdate(this.container, i * 100, 0));
-        // }
-
         requestAnimationFrame(() => this.gameLoop());
     }
 
@@ -43,9 +39,18 @@ class Game {
         this.bullets.push(b);
     }
 
+    public Reset() {
+        this.penguin.removeMe();
+
+    }
+
 
     private gameLoop() {
-        this.penguin.draw();
+
+        if (this.penguin != null) {
+            this.penguin.draw();
+
+        }
 
         for (let b of this.bullets) {
             b.move();
@@ -70,7 +75,11 @@ class Game {
 
             if (Utils.checkCollision(u, this.penguin)) {
                 console.log("hit");
-                this.penguin.removeMe();
+                
+                this.Reset();
+
+
+
             }
             u.draw();
             u.move();

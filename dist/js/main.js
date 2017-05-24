@@ -195,9 +195,14 @@ var Game = (function () {
     Game.prototype.createBullet = function (b) {
         this.bullets.push(b);
     };
+    Game.prototype.Reset = function () {
+        this.penguin.removeMe();
+    };
     Game.prototype.gameLoop = function () {
         var _this = this;
-        this.penguin.draw();
+        if (this.penguin != null) {
+            this.penguin.draw();
+        }
         for (var _i = 0, _a = this.bullets; _i < _a.length; _i++) {
             var b = _a[_i];
             b.move();
@@ -220,7 +225,7 @@ var Game = (function () {
             var u = _e[_d];
             if (Utils.checkCollision(u, this.penguin)) {
                 console.log("hit");
-                this.penguin.removeMe();
+                this.Reset();
             }
             u.draw();
             u.move();
