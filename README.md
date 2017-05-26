@@ -58,7 +58,7 @@ In the Gameobjects class I added a getter and setter for all properties so they 
 
 ## Beoordeling
 
-* ![vinkje](https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg) Klassendiagram: Goed, probeer alleen geen lijntjes over elkaar te tekenen
+* ![vinkje](https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg =10X10) Klassendiagram: Goed, probeer alleen geen lijntjes over elkaar te tekenen
 * ![vinkje](https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg) README: Heel goed
 * ![vinkje](https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg) Interface: Aanwezig
 * ![vinkje](https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg) Static Utils Method: Aanwezig
