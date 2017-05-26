@@ -1,7 +1,4 @@
 class Moving implements Behavior {
-
-
-
     private speed: number;
 
 
