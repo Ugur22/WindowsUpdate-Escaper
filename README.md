@@ -58,15 +58,15 @@ In the Gameobjects class I added a getter and setter for all properties so they 
 
 ## Beoordeling
 
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Klassendiagram: Goed, probeer alleen geen lijntjes over elkaar te tekenen
-*  README: Heel goed
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Interface: Aanwezig
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Static Utils Method: Aanwezig
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Singleton: Game heeft de getInstance method en de static refrence, maar je contructor van Game is public. Hierdoor kan iedereen nog steeds instanties aanmaken en is meer een multiton ipv een singleton
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Strategy: Aanwezig, maar met maar 1 inplementatie is het niet echt heel nuttig en mis je de logica rondom het wisselen van strategies. (en geef object voor draw en move in Behavior een type mee ipv een implicit any)
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Encapsulation: goed
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Composition: goed
-* <img src="https://www.treant.nl/uploads/bestanden/b8ce6cb8-e3f5-473a-8363-ad7ea4ef462b/2965896820/Groen%20vinkje.jpg" style="width: 10px;" /> Inherance: Goed, met GameObject en Penguin/Sudo/WindowsUpdate
+* Klassendiagram: Goed, probeer alleen geen lijntjes over elkaar te tekenen
+* README: Heel goed
+* Interface: Aanwezig
+* Static Utils Method: Aanwezig
+* Singleton: Game heeft de getInstance method en de static refrence, maar je contructor van Game is public. Hierdoor kan iedereen nog steeds instanties aanmaken en is meer een multiton ipv een singleton
+* Strategy: Aanwezig, maar met maar 1 inplementatie is het niet echt heel nuttig en mis je de logica rondom het wisselen van strategies. (en geef object voor draw en move in Behavior een type mee ipv een implicit any)
+* Encapsulation: goed
+* Composition: goed
+* Inherance: Goed, met GameObject en Penguin/Sudo/WindowsUpdate
 
 ### Eindoordeel:
 Voldoende, er is aan alle eisen voldaan. Echter zijn er een paar dingen gerelateerd aan de lesstof die niet zijn zoals ze zouden moeten zijn. De grootste is de public constructor van de singleton, maar ook niet alle types zijn gedefinieerd. Op sommige plekken word any gebruikt als een HTMLElement zonder typecheck of cast. Dit kan ervoor zorgen dat je een typeerror krijgt in code die probleemloos compileerd. 
