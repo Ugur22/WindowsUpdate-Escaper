@@ -54,4 +54,25 @@ I created GameObjects.ts which has all the attributes that a gameobject needs. t
 #### Composition
 The Game.ts has a relationship with all the different kind of gameobjects like penguin, sudo and windowsUpdate class. That's where the composition takes place.
 #### Encapsulation
-In the Gameobjects class I added a getter and setter f all properties so they are not easily accessible from the outside. All properties are private.
+In the Gameobjects class I added a getter and setter for all properties so they are not easily accessible from the outside. All properties are private.
+
+## Beoordeling
+
+* Klassendiagram: Goed, probeer alleen geen lijntjes over elkaar te tekenen
+* README: Heel goed
+* Interface: Aanwezig
+* Static Utils Method: Aanwezig
+* Singleton: Game heeft de getInstance method en de static refrence, maar je contructor van Game is public. Hierdoor kan iedereen nog steeds instanties aanmaken en is meer een multiton ipv een singleton
+* Strategy: Aanwezig, maar met maar 1 inplementatie is het niet echt heel nuttig en mis je de logica rondom het wisselen van strategies. (en geef object voor draw en move in Behavior een type mee ipv een implicit any)
+* Encapsulation: goed
+* Composition: goed
+* Inherance: Goed, met GameObject en Penguin/Sudo/WindowsUpdate
+
+### Eindoordeel:
+Voldoende, er is aan alle eisen voldaan. Echter zijn er een paar dingen gerelateerd aan de lesstof die niet zijn zoals ze zouden moeten zijn. De grootste is de public constructor van de singleton, maar ook niet alle types zijn gedefinieerd. Op sommige plekken word any gebruikt als een HTMLElement zonder typecheck of cast. Dit kan ervoor zorgen dat je een typeerror krijgt in code die probleemloos compileerd. 
+
+### Verbeteringen & Toevoegingen
+* types toegevoegd aan Behavior. Dit zorgt ervoor dat move() en draw() geen typeerrors meer kunnen geven. 
+* constructor van Game private gemaakt zodat er altijd maar 1 instantie kan zijn die is opgeslagen in Game.instance
+* overflow protection voor WindowsUpdate. Omdat requestAnimationFrame() geen frame teruggeeft op het moment dat je tabblad niet gefocust is en setInterval je interval wel uitvoerd als het tabblad niet gefocust is kon je een overflow aan WindowsUpdates krijgen. Dit is nu opgelost door een max aantal WindowsUpdates in te stellen
+

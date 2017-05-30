@@ -13,7 +13,7 @@ class Penguin extends GameObject {
         this.y = 520;
         this.height = 70;
         this.width = 70;
-        this.behavior = new Moving(this.speed, this);
+        this.behavior = new Moving(this.speed);
         window.addEventListener("keydown", (e: KeyboardEvent) => this.onKeyDown(e));
         window.addEventListener("keyup", (e: KeyboardEvent) => this.onKeyUp(e));
     }

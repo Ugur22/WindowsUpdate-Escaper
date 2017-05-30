@@ -12,7 +12,7 @@ class WindowsUpdate extends GameObject {
         this.y = y;
         this.height = 30;
         this.width = 30;
-        this.behavior = new Moving(this.speed, this);
+        this.behavior = new Moving(this.speed);
     }
 
     public draw(): void {

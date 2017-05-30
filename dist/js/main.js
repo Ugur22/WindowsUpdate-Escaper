@@ -88,7 +88,7 @@ var Penguin = (function (_super) {
         _this.y = 520;
         _this.height = 70;
         _this.width = 70;
-        _this.behavior = new Moving(_this.speed, _this);
+        _this.behavior = new Moving(_this.speed);
         window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
         window.addEventListener("keyup", function (e) { return _this.onKeyUp(e); });
         return _this;
@@ -125,7 +125,7 @@ var Sudo = (function (_super) {
         _this.y = y;
         _this.height = 30;
         _this.width = 30;
-        _this.behavior = new Moving(_this.speed, _this);
+        _this.behavior = new Moving(_this.speed);
         return _this;
     }
     Sudo.prototype.move = function () {
@@ -147,7 +147,7 @@ var WindowsUpdate = (function (_super) {
         _this.y = y;
         _this.height = 30;
         _this.width = 30;
-        _this.behavior = new Moving(_this.speed, _this);
+        _this.behavior = new Moving(_this.speed);
         return _this;
     }
     WindowsUpdate.prototype.draw = function () {
@@ -187,6 +187,8 @@ var Game = (function () {
         this.container = document.getElementById("container");
         this.penguin = new Penguin(this.container);
         setInterval(function () {
+            if (_this.countWindowsUpdates() > 50)
+                return;
             _this.RandomX = Math.floor(Math.random() * 700) + 1;
             _this.updates.push(new WindowsUpdate(_this.container, _this.RandomX, 0));
         }, 500);
@@ -198,6 +200,10 @@ var Game = (function () {
     Game.prototype.Reset = function () {
         this.penguin.removeMe();
     };
+    Game.prototype.countWindowsUpdates = function () {
+        return this.updates.filter(function (t) { return t instanceof WindowsUpdate; }).length;
+    };
+    ;
     Game.prototype.gameLoop = function () {
         var _this = this;
         if (this.penguin != null) {
@@ -248,7 +254,7 @@ window.addEventListener("load", function () {
     var g = Game.getInstance();
 });
 var Moving = (function () {
-    function Moving(s, object) {
+    function Moving(s) {
         this.speed = s;
     }
     Moving.prototype.onKeydown = function (e) {

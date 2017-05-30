@@ -1,7 +1,7 @@
 interface Behavior {
     penguin: Penguin;
-    draw(object): void;
-    move(object, speed): void;
+    draw(object: GameObject): void;
+    move(object: GameObject, speed: number): void;
     onKeydown(e: KeyboardEvent): void;
     onKeyUp(e: KeyboardEvent): void
 }
