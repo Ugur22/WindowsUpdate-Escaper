@@ -88,7 +88,7 @@ var Penguin = (function (_super) {
         _this.y = 520;
         _this.height = 70;
         _this.width = 70;
-        _this.behavior = new Moving(_this.speed, _this);
+        _this.behavior = new Moving(_this.speed);
         window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
         window.addEventListener("keyup", function (e) { return _this.onKeyUp(e); });
         return _this;
@@ -125,7 +125,7 @@ var Sudo = (function (_super) {
         _this.y = y;
         _this.height = 30;
         _this.width = 30;
-        _this.behavior = new Moving(_this.speed, _this);
+        _this.behavior = new Moving(_this.speed);
         return _this;
     }
     Sudo.prototype.move = function () {
@@ -147,7 +147,7 @@ var WindowsUpdate = (function (_super) {
         _this.y = y;
         _this.height = 30;
         _this.width = 30;
-        _this.behavior = new Moving(_this.speed, _this);
+        _this.behavior = new Moving(_this.speed);
         return _this;
     }
     WindowsUpdate.prototype.draw = function () {
@@ -248,7 +248,7 @@ window.addEventListener("load", function () {
     var g = Game.getInstance();
 });
 var Moving = (function () {
-    function Moving(s, object) {
+    function Moving(s) {
         this.speed = s;
     }
     Moving.prototype.onKeydown = function (e) {

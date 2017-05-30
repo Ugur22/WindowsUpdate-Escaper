@@ -5,7 +5,7 @@ class Moving implements Behavior {
     public penguin: Penguin;
 
 
-    constructor(s: number, object) {
+    constructor(s: number) {
         this.speed = s;
     }
 
@@ -19,12 +19,12 @@ class Moving implements Behavior {
 
     }
 
-    move(object: any, speed): void {
+    move(object: GameObject, speed): void {
         object.y = object.y + speed;
     }
 
 
-    public draw(object) {
+    public draw(object: GameObject) {
         object.div.style.transform = "translate(" + object.x + "px, " + object.y + "px)";
 
     }
