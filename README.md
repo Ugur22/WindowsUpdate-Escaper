@@ -70,3 +70,9 @@ In the Gameobjects class I added a getter and setter for all properties so they 
 
 ### Eindoordeel:
 Voldoende, er is aan alle eisen voldaan. Echter zijn er een paar dingen gerelateerd aan de lesstof die niet zijn zoals ze zouden moeten zijn. De grootste is de public constructor van de singleton, maar ook niet alle types zijn gedefinieerd. Op sommige plekken word any gebruikt als een HTMLElement zonder typecheck of cast. Dit kan ervoor zorgen dat je een typeerror krijgt in code die probleemloos compileerd. 
+
+### Verbeteringen & Toevoegingen
+* types toegevoegd aan Behavior. Dit zorgt ervoor dat move() en draw() geen typeerrors meer kunnen geven. 
+* constructor van Game private gemaakt zodat er altijd maar 1 instantie kan zijn die is opgeslagen in Game.instance
+* overflow protection voor WindowsUpdate. Omdat requestAnimationFrame() geen frame teruggeeft op het moment dat je tabblad niet gefocust is en setInterval je interval wel uitvoerd als het tabblad niet gefocust is kon je een overflow aan WindowsUpdates krijgen. Dit is nu opgelost door een max aantal WindowsUpdates in te stellen
+
