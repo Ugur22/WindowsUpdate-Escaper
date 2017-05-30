@@ -28,6 +28,8 @@ class Game {
         this.penguin = new Penguin(this.container);
 
         setInterval(() => {
+            if(this.countWindowsUpdates() > 50) return;
+            
             this.RandomX = Math.floor(Math.random() * 700) + 1;
             this.updates.push(new WindowsUpdate(this.container, this.RandomX, 0));
         }, 500);
@@ -43,6 +45,10 @@ class Game {
         this.penguin.removeMe();
 
     }
+
+    private countWindowsUpdates():number {
+        return this.updates.filter(t => t instanceof WindowsUpdate).length 
+    };
 
 
     private gameLoop() {

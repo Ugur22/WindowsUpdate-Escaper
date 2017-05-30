@@ -187,6 +187,8 @@ var Game = (function () {
         this.container = document.getElementById("container");
         this.penguin = new Penguin(this.container);
         setInterval(function () {
+            if (_this.countWindowsUpdates() > 50)
+                return;
             _this.RandomX = Math.floor(Math.random() * 700) + 1;
             _this.updates.push(new WindowsUpdate(_this.container, _this.RandomX, 0));
         }, 500);
@@ -198,6 +200,10 @@ var Game = (function () {
     Game.prototype.Reset = function () {
         this.penguin.removeMe();
     };
+    Game.prototype.countWindowsUpdates = function () {
+        return this.updates.filter(function (t) { return t instanceof WindowsUpdate; }).length;
+    };
+    ;
     Game.prototype.gameLoop = function () {
         var _this = this;
         if (this.penguin != null) {
