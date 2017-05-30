@@ -23,7 +23,7 @@ class Game {
     private RandomX: number;
 
 
-    constructor() {
+    private constructor() {
 
         this.penguin = new Penguin(this.container);
 
