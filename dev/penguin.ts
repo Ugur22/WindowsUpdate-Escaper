@@ -26,8 +26,7 @@ class Penguin extends GameObject {
             this.x = this.x + this.speed;
         }
         else if (e.keyCode == 32) {
-            let b = new Sudo(this.container, this.x, this.y)
-            Game.getInstance().createBullet(b);
+             Game.getInstance().createBullet();
 
         }
     }

@@ -11,6 +11,12 @@ abstract class GameObject {
 
     }
 
+    public move(): void {
+    }
+
+    public draw(): void {
+    }
+
     public removeMe(): void {
         this.div.remove();
     }

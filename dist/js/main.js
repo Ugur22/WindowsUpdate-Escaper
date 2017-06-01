@@ -12,6 +12,10 @@ var GameObject = (function () {
     function GameObject() {
         this.container = document.getElementById("container");
     }
+    GameObject.prototype.move = function () {
+    };
+    GameObject.prototype.draw = function () {
+    };
     GameObject.prototype.removeMe = function () {
         this.div.remove();
     };
@@ -101,8 +105,7 @@ var Penguin = (function (_super) {
             this.x = this.x + this.speed;
         }
         else if (e.keyCode == 32) {
-            var b = new Sudo(this.container, this.x, this.y);
-            Game.getInstance().createBullet(b);
+            Game.getInstance().createBullet();
         }
     };
     Penguin.prototype.onKeyUp = function (e) {
@@ -183,19 +186,19 @@ var Game = (function () {
     function Game() {
         var _this = this;
         this.updates = new Array();
+        this.gameObjects = new Array();
         this.bullets = new Array();
         this.container = document.getElementById("container");
-        this.penguin = new Penguin(this.container);
+        this.gameObjects.push(new Penguin(this.container));
         setInterval(function () {
-            if (_this.countWindowsUpdates() > 50)
-                return;
             _this.RandomX = Math.floor(Math.random() * 700) + 1;
-            _this.updates.push(new WindowsUpdate(_this.container, _this.RandomX, 0));
-        }, 500);
+            _this.gameObjects.push(new WindowsUpdate(_this.container, _this.RandomX, 0));
+        }, 1000);
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
-    Game.prototype.createBullet = function (b) {
-        this.bullets.push(b);
+    Game.prototype.createBullet = function () {
+        var penguin = this.gameObjects[0];
+        this.gameObjects.push(new Sudo(this.container, penguin.x, penguin.y));
     };
     Game.prototype.Reset = function () {
         this.penguin.removeMe();
@@ -206,39 +209,10 @@ var Game = (function () {
     ;
     Game.prototype.gameLoop = function () {
         var _this = this;
-        if (this.penguin != null) {
-            this.penguin.draw();
-        }
-        for (var _i = 0, _a = this.bullets; _i < _a.length; _i++) {
-            var b = _a[_i];
-            b.move();
-            b.draw();
-            for (var _b = 0, _c = this.updates; _b < _c.length; _b++) {
-                var u = _c[_b];
-                if (Utils.checkCollision(b, u)) {
-                    b.removeMe();
-                    Utils.removeObject(b, this.bullets);
-                    u.removeMe();
-                    Utils.removeObject(u, this.updates);
-                }
-                if (b.y < 0) {
-                    b.removeMe();
-                    Utils.removeObject(b, this.bullets);
-                }
-            }
-        }
-        for (var _d = 0, _e = this.updates; _d < _e.length; _d++) {
-            var u = _e[_d];
-            if (Utils.checkCollision(u, this.penguin)) {
-                console.log("hit");
-                this.Reset();
-            }
-            u.draw();
-            u.move();
-            if (u.y > 600) {
-                u.removeMe();
-                Utils.removeObject(u, this.updates);
-            }
+        for (var _i = 0, _a = this.gameObjects; _i < _a.length; _i++) {
+            var g = _a[_i];
+            g.move();
+            g.draw();
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };

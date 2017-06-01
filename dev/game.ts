@@ -12,11 +12,8 @@ class Game {
     private update: WindowsUpdate;
     private static instance: Game;
     private updates: Array<WindowsUpdate> = new Array<WindowsUpdate>();
-    // private gameObjects: Array<GameObject> = new Array<GameObject>();
-    // gameobjects.push(new Penguin());
-    // for(let g of this.gameObjects){
-    //     g.move();
-    // }
+    private gameObjects: Array<GameObject> = new Array<GameObject>();
+
 
     private bullets: Array<Sudo> = new Array<Sudo>();
     private container = document.getElementById("container");
@@ -25,20 +22,20 @@ class Game {
 
     private constructor() {
 
-        this.penguin = new Penguin(this.container);
 
+        this.gameObjects.push(new Penguin(this.container));
         setInterval(() => {
-            if(this.countWindowsUpdates() > 50) return;
-            
             this.RandomX = Math.floor(Math.random() * 700) + 1;
-            this.updates.push(new WindowsUpdate(this.container, this.RandomX, 0));
-        }, 500);
+            this.gameObjects.push(new WindowsUpdate(this.container, this.RandomX, 0));
+
+        }, 1000);
 
         requestAnimationFrame(() => this.gameLoop());
     }
 
-    public createBullet(b: Sudo) {
-        this.bullets.push(b);
+    public createBullet() {
+        let penguin = this.gameObjects[0];
+        this.gameObjects.push(new Sudo(this.container, penguin.x, penguin.y));
     }
 
     public Reset() {
@@ -46,58 +43,17 @@ class Game {
 
     }
 
-    private countWindowsUpdates():number {
-        return this.updates.filter(t => t instanceof WindowsUpdate).length 
+    private countWindowsUpdates(): number {
+        return this.updates.filter(t => t instanceof WindowsUpdate).length
     };
 
 
-    private gameLoop() {
+     private gameLoop() {
 
-        if (this.penguin != null) {
-            this.penguin.draw();
-
+        for (let g of this.gameObjects) {
+            g.move();
+            g.draw();
         }
-
-        for (let b of this.bullets) {
-            b.move();
-            b.draw();
-            for (let u of this.updates) {
-
-                if (Utils.checkCollision(b, u)) {
-                    b.removeMe();
-                    Utils.removeObject(b, this.bullets);
-
-                    u.removeMe();
-                    Utils.removeObject(u, this.updates);
-                }
-                if (b.y < 0) {
-                    b.removeMe();
-                    Utils.removeObject(b, this.bullets);
-                }
-            }
-        }
-        for (let u of this.updates) {
-
-
-            if (Utils.checkCollision(u, this.penguin)) {
-                console.log("hit");
-                
-                this.Reset();
-
-
-
-            }
-            u.draw();
-            u.move();
-
-
-
-            if (u.y > 600) {
-                u.removeMe();
-                Utils.removeObject(u, this.updates);
-            }
-        }
-
 
         requestAnimationFrame(() => this.gameLoop());
     }
