@@ -1,4 +1,6 @@
-abstract class GameObject {
+abstract class GameObject implements Subject {
+    public observers: Array<Observer> = new Array<Observer>();
+
     protected _div: HTMLElement;
     protected _speed: number;
     protected _height: number;
@@ -10,7 +12,13 @@ abstract class GameObject {
     constructor() {
 
     }
-
+    public subscribe(o: Observer): void {
+        this.observers.push(o);
+    }
+    public unsubscribe(o: Observer): void {
+        let index: number = this.observers.indexOf(o);
+        this.observers.splice(index);
+    }
     public move(): void {
     }
 

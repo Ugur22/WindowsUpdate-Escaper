@@ -3,6 +3,7 @@
         "sourceMap":  true,
         "removeComments": true,
         "target":"es5",
+        "module": "amd",
         "out": "dist/js/main.js"
     },
     "exclude": [

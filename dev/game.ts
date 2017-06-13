@@ -1,32 +1,39 @@
-/// <reference path="penguin.ts" />
-/// <reference path="sudo.ts" />
-/// <reference path="windowsUpdate.ts" />
-/// <reference path="utils.ts" />
-
-
-
+/// <reference path="greensock.d.ts"/>
+/// <reference path="utils.ts"/>
 
 class Game {
 
-    private penguin: Penguin;
-    private update: WindowsUpdate;
+    private penguin: Gameobjects.Penguin;
+    private update: Gameobjects.WindowsUpdate;
     private static instance: Game;
-    private updates: Array<WindowsUpdate> = new Array<WindowsUpdate>();
+    private updates: Array<Gameobjects.WindowsUpdate> = new Array<Gameobjects.WindowsUpdate>();
     private gameObjects: Array<GameObject> = new Array<GameObject>();
+    private score: number = 5;
 
 
-    private bullets: Array<Sudo> = new Array<Sudo>();
+
+
+    private bullets: Array<Gameobjects.Sudo> = new Array<Gameobjects.Sudo>();
     private container = document.getElementById("container");
     private RandomX: number;
-
+    private dead = false;
 
     private constructor() {
-
-
-        this.gameObjects.push(new Penguin(this.container));
+        this.penguin = new Gameobjects.Penguin(this.container);
+        this.gameObjects.push(this.penguin);
         setInterval(() => {
+
+
+
+            // let gameOver = document.getElementById("gameover");
+            // gameOver.innerHTML = "Game Over<br>Score: " + this.score;
+
+            let title = document.getElementById("title");
+            title.innerHTML = "WindowsUpdate-Escaper";
+            TweenLite.to(title, 2, { left: "250px", borderBottomColor: "#90e500", color: "white" });
+
             this.RandomX = Math.floor(Math.random() * 700) + 1;
-            this.gameObjects.push(new WindowsUpdate(this.container, this.RandomX, 0));
+            this.gameObjects.push(new Gameobjects.WindowsUpdate(this.container, this.RandomX, 0, this.penguin));
 
         }, 1000);
 
@@ -34,8 +41,7 @@ class Game {
     }
 
     public createBullet() {
-        let penguin = this.gameObjects[0];
-        this.gameObjects.push(new Sudo(this.container, penguin.x, penguin.y));
+        this.gameObjects.push(new Gameobjects.Sudo(this.container, this.penguin.x, this.penguin.y));
     }
 
     public Reset() {
@@ -44,18 +50,28 @@ class Game {
     }
 
     private countWindowsUpdates(): number {
-        return this.updates.filter(t => t instanceof WindowsUpdate).length
+        return this.updates.filter(t => t instanceof Gameobjects.WindowsUpdate).length
     };
 
 
-     private gameLoop() {
+    private gameLoop() {
 
         for (let g of this.gameObjects) {
+
+
+
+            // if (Util.Utils.checkCollision((g), g)) {
+            //     console.log("hit");
+            // }
+
             g.move();
             g.draw();
+
         }
 
-        requestAnimationFrame(() => this.gameLoop());
+
+
+        if (!this.dead) requestAnimationFrame(() => this.gameLoop());
     }
 
 
@@ -73,5 +89,5 @@ class Game {
 
 // load
 window.addEventListener("load", function () {
-    let g: Game = Game.getInstance();
+    Game.getInstance();
 });

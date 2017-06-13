@@ -1,8 +1,9 @@
-class Moving implements Behavior {
+namespace Behaviours {
+ export class Moving implements Behavior {
     private speed: number;
 
 
-    public penguin: Penguin;
+    public penguin: Gameobjects.Penguin;
 
 
     constructor(s: number) {
@@ -30,4 +31,5 @@ class Moving implements Behavior {
     }
 
 
+}
 }

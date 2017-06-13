@@ -1,7 +1,6 @@
-/// <reference path="gameObject.ts" />
 
-
-class Sudo extends GameObject {
+namespace Gameobjects {
+export  class Sudo extends GameObject {
     public behavior: Behavior
 
     constructor(parent: HTMLElement, x: number, y: number) {
@@ -13,7 +12,7 @@ class Sudo extends GameObject {
         this.y = y;
         this.height = 30;
         this.width = 30;
-        this.behavior = new Moving(this.speed);
+        this.behavior = new Behaviours.Moving(this.speed);
     }
 
     public move(): void {
@@ -23,4 +22,6 @@ class Sudo extends GameObject {
     public draw(): void {
         this.behavior.draw(this);
     }
+}
+
 }
