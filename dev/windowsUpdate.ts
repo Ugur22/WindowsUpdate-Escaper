@@ -15,7 +15,7 @@ namespace Gameobjects {
             parent.appendChild(this.div);
             this.speed = 1;
             this.x = x;
-            this.y = y;
+            this.y = -100;
             this.height = 30;
             this.width = 30;
             this.behavior = new Behaviours.Moving(this.speed);
@@ -32,7 +32,6 @@ namespace Gameobjects {
 
         notify(): void {
            this.speed = 5;
-           this.x = this.x + 20;
         }
 
 

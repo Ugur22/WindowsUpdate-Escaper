@@ -52,12 +52,16 @@ update {
     text-shadow: 3px 0 purple, 0 1px purple, 1px 0 purple, 0 3px purple;
 }
 
-#gameOver{
-    z-index: 9;
-    font-size: 15px;
-    margin-left: 25%;
-    color: white;
-   text-shadow: 3px 0 purple, 0 1px purple, 1px 0 purple, 0 3px purple;
+gameover{
+    width:805px; height:265px;
+    background-image: url('../images/endtitle.png');
+}
+
+health#health {
+    margin-top: 10px;
+        margin-left: 30px;
+          color:white;
+        text-shadow: 3px 0 purple, 0 1px purple, 1px 0 purple, 0 3px purple;
 }
 
 #title{

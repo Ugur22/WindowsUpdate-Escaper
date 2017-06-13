@@ -6,7 +6,7 @@ Windows-updateEscaper is an awesome game to show how much Windows sucks. As the 
 
 
 ## UML Classdiagram 
-![alt tag](http://i.imgur.com/qccGVFv.jpg)<br />
+![alt tag](http://imgur.com/a/WMyyK)<br />
 
 #### the following tools are needed to correctly run this project. If you already have them set up you can skip this part and start with cloning and installing the game
 
@@ -55,6 +55,18 @@ I created GameObjects.ts which has all the attributes that a gameobject needs. t
 The Game.ts has a relationship with all the different kind of gameobjects like penguin, sudo and windowsUpdate class. That's where the composition takes place.
 #### Encapsulation
 In the Gameobjects class I added a getter and setter for all properties so they are not easily accessible from the outside. All properties are private.
+
+#### Namespaces
+Ik heb alle klasses toegevoegd aan een Namespace.  Bijvoorbeeld hoort de Penguin, WindowsUpdate en sudo klasse tot Gameobjects. De utils klasse hoort bij de Namespace Util.
+
+#### Enum
+Ik heb verder ook nog enumeration geimplementeerd in mijn project. In de klasse defines.ts zitten zijn de keys gedifeneerd. Deze kan ik dan in de Penguin klasse aanroepen bij de keyCode. 
+
+#### Observer Pattern
+De Penguin is de Subject en de WindowsUpdate is de Observer. De windows update kijkt of de penguin beweegt en aan de hand daarvan gaat de windows update snelelr bewegen.Hij wordt dus genotified door de de penguin.
+
+#### Library
+Ik heb de Tweenlight library gebruikt. Wanneer het spel begint zie je de titel van links naar rechts bewegen. En wanneer je dood gaat stuitert er een game over text over het scherm. 
 
 ## Beoordeling
 

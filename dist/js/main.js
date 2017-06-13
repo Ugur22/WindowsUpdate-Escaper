@@ -44,23 +44,21 @@ var Game = (function () {
         var _this = this;
         this.updates = new Array();
         this.gameObjects = new Array();
-        this.score = 5;
+        this.health_text = document.getElementById("health");
+        this.score = 0;
+        this.counter = 0;
         this.bullets = new Array();
         this.container = document.getElementById("container");
+        this.health = 3;
         this.dead = false;
         this.penguin = new Gameobjects.Penguin(this.container);
-        this.gameObjects.push(this.penguin);
-        setInterval(function () {
-            var title = document.getElementById("title");
-            title.innerHTML = "WindowsUpdate-Escaper";
-            TweenLite.to(title, 2, { left: "250px", borderBottomColor: "#90e500", color: "white" });
-            _this.RandomX = Math.floor(Math.random() * 700) + 1;
-            _this.gameObjects.push(new Gameobjects.WindowsUpdate(_this.container, _this.RandomX, 0, _this.penguin));
-        }, 1000);
+        var title = document.getElementById("title");
+        title.innerHTML = "WindowsUpdate-Escaper";
+        TweenLite.to(title, 2, { left: "250px", borderBottomColor: "#90e500", color: "white" });
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
     Game.prototype.createBullet = function () {
-        this.gameObjects.push(new Gameobjects.Sudo(this.container, this.penguin.x, this.penguin.y));
+        this.bullets.push(new Gameobjects.Sudo(this.container, this.penguin.x, this.penguin.y));
     };
     Game.prototype.Reset = function () {
         this.penguin.removeMe();
@@ -71,8 +69,54 @@ var Game = (function () {
     ;
     Game.prototype.gameLoop = function () {
         var _this = this;
-        for (var _i = 0, _a = this.gameObjects; _i < _a.length; _i++) {
-            var g = _a[_i];
+        this.counter++;
+        if (this.counter > 60) {
+            this.health_text.innerHTML = "Health:" + this.health;
+            this.counter = 0;
+            this.RandomX = Math.floor(Math.random() * 700) + 1;
+            this.gameObjects.push(new Gameobjects.WindowsUpdate(this.container, this.RandomX, 0, this.penguin));
+        }
+        this.penguin.move();
+        this.penguin.draw();
+        for (var _i = 0, _a = this.bullets; _i < _a.length; _i++) {
+            var b = _a[_i];
+            b.move();
+            b.draw();
+            if (b.y < 0) {
+                b.removeMe();
+                Util.Utils.removeObject(b, this.bullets);
+            }
+        }
+        for (var _b = 0, _c = this.gameObjects; _b < _c.length; _b++) {
+            var g = _c[_b];
+            if (g.y > 600) {
+                g.removeMe();
+                Util.Utils.removeObject(g, this.gameObjects);
+            }
+        }
+        for (var _d = 0, _e = this.gameObjects; _d < _e.length; _d++) {
+            var g = _e[_d];
+            if (Util.Utils.checkCollision(this.penguin, g)) {
+                console.log("hit");
+                this.health--;
+                g.removeMe();
+                Util.Utils.removeObject(g, this.gameObjects);
+            }
+            if (this.health <= 0) {
+                var gameOver = document.createElement("gameover");
+                this.container.appendChild(gameOver);
+                TweenLite.to(gameOver, 2, { y: 300, x: 200, ease: Bounce.easeOut });
+                this.dead = true;
+            }
+            for (var _f = 0, _g = this.bullets; _f < _g.length; _f++) {
+                var b = _g[_f];
+                if (Util.Utils.checkCollision(b, g)) {
+                    b.removeMe();
+                    Util.Utils.removeObject(b, this.bullets);
+                    g.removeMe();
+                    Util.Utils.removeObject(g, this.updates);
+                }
+            }
             g.move();
             g.draw();
         }
@@ -197,7 +241,6 @@ var Gameobjects;
         __extends(Penguin, _super);
         function Penguin(parent) {
             var _this = _super.call(this) || this;
-            _this.observers = new Array();
             _this.div = document.createElement("penguin");
             parent.appendChild(_this.div);
             _this.speed = 30;
@@ -286,7 +329,7 @@ var Gameobjects;
             parent.appendChild(_this.div);
             _this.speed = 1;
             _this.x = x;
-            _this.y = y;
+            _this.y = -100;
             _this.height = 30;
             _this.width = 30;
             _this.behavior = new Behaviours.Moving(_this.speed);
@@ -300,7 +343,6 @@ var Gameobjects;
         };
         WindowsUpdate.prototype.notify = function () {
             this.speed = 5;
-            this.x = this.x + 20;
         };
         return WindowsUpdate;
     }(GameObject));

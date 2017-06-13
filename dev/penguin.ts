@@ -1,7 +1,7 @@
 namespace Gameobjects {
     export class Penguin extends GameObject implements Subject {
 
-        public observers: Array<Observer> = new Array<Observer>();
+
 
 
         public behavior: Behavior
